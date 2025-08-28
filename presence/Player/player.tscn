@@ -1,7 +1,13 @@
-[gd_scene load_steps=23 format=3 uid="uid://brdjjdli3q1ha"]
+[gd_scene load_steps=35 format=3 uid="uid://brdjjdli3q1ha"]
 
 [ext_resource type="Script" uid="uid://76f42n8q36tp" path="res://Player/scripts/player.gd" id="1_4ntmi"]
 [ext_resource type="Texture2D" uid="uid://cojnlu8uk2i33" path="res://Art/sprites/presence-guy-Sheet.png" id="1_l8h54"]
+[ext_resource type="Script" uid="uid://dydt6xas4kvwa" path="res://Objects/scripts/state_machine.gd" id="3_btcbx"]
+[ext_resource type="Script" uid="uid://b3na5bbfpm50o" path="res://Player/scripts/states/idle.gd" id="4_gwnis"]
+[ext_resource type="Script" uid="uid://dm6wuu6ius2vj" path="res://Player/scripts/states/walk.gd" id="5_k53q1"]
+[ext_resource type="Script" uid="uid://cj1doaorhwiqd" path="res://Player/scripts/states/run.gd" id="6_fhl08"]
+[ext_resource type="Script" uid="uid://dc4cwknwtxdse" path="res://Player/scripts/states/jump.gd" id="7_vtle1"]
+[ext_resource type="Script" uid="uid://bua00a0cje5c1" path="res://Player/scripts/states/hide.gd" id="8_od3ui"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l8h54"]
 atlas = ExtResource("1_l8h54")
@@ -35,6 +41,10 @@ region = Rect2(32, 112, 16, 16)
 atlas = ExtResource("1_l8h54")
 region = Rect2(16, 112, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpjlu"]
+atlas = ExtResource("1_l8h54")
+region = Rect2(32, 16, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ntmi"]
 atlas = ExtResource("1_l8h54")
 region = Rect2(16, 0, 16, 16)
@@ -43,11 +53,31 @@ region = Rect2(16, 0, 16, 16)
 atlas = ExtResource("1_l8h54")
 region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gwnis"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_n471f"]
 atlas = ExtResource("1_l8h54")
-region = Rect2(16, 0, 16, 16)
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7emwf"]
+atlas = ExtResource("1_l8h54")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qemgg"]
+atlas = ExtResource("1_l8h54")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hshwv"]
+atlas = ExtResource("1_l8h54")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mwp6"]
+atlas = ExtResource("1_l8h54")
+region = Rect2(32, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k53q1"]
+atlas = ExtResource("1_l8h54")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o28un"]
 atlas = ExtResource("1_l8h54")
 region = Rect2(48, 0, 16, 16)
 
@@ -67,13 +97,13 @@ region = Rect2(48, 48, 16, 16)
 atlas = ExtResource("1_l8h54")
 region = Rect2(64, 48, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lfmf2"]
-atlas = ExtResource("1_l8h54")
-region = Rect2(48, 80, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_pisgm"]
 atlas = ExtResource("1_l8h54")
 region = Rect2(64, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfmf2"]
+atlas = ExtResource("1_l8h54")
+region = Rect2(48, 80, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x3vf3"]
 animations = [{
@@ -87,7 +117,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_apopc")
 }, {
-"duration": 2.0,
+"duration": 2.5,
 "texture": SubResource("AtlasTexture_5htga")
 }, {
 "duration": 15.0,
@@ -136,20 +166,60 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_gpjlu")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_4ntmi")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_btcbx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gwnis")
+"texture": SubResource("AtlasTexture_n471f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7emwf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qemgg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hshwv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mwp6")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_k53q1")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 1.0
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k53q1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ntmi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btcbx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ntmi")
+}],
+"loop": true,
+"name": &"idle_2",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o28un")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -166,18 +236,18 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 4.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lfmf2")
+"texture": SubResource("AtlasTexture_pisgm")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pisgm")
+"texture": SubResource("AtlasTexture_lfmf2")
 }],
 "loop": true,
 "name": &"walk",
-"speed": 2.0
+"speed": 6.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l8h54"]
@@ -190,7 +260,33 @@ script = ExtResource("1_4ntmi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_x3vf3")
-animation = &"idle"
+animation = &"hide"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_l8h54")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("parent", "animations", "initial_state")]
+script = ExtResource("3_btcbx")
+parent = NodePath("..")
+animations = NodePath("../AnimatedSprite2D")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_gwnis")
+
+[node name="Walk" type="Node" parent="StateMachine"]
+script = ExtResource("5_k53q1")
+
+[node name="Run" type="Node" parent="StateMachine"]
+script = ExtResource("6_fhl08")
+
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource("7_vtle1")
+
+[node name="Hide" type="Node" parent="StateMachine"]
+script = ExtResource("8_od3ui")
+
+[node name="Timer" type="Timer" parent="StateMachine/Hide"]
+wait_time = 3.5
+
+[connection signal="timeout" from="StateMachine/Hide/Timer" to="StateMachine/Hide" method="_on_timer_timeout"]
