@@ -14,7 +14,7 @@ func physics_update(delta):
 	if input_direction.x && sign(input_direction.x) != sign(velocity.x):
 		velocity.x *= 0.75
 	
-	parent.velocity = velocity
+	parent.velocity.x = velocity.x
 	
 	# check for any state changes
 	if Input.is_action_just_released("sprint") and velocity.x != 0:
