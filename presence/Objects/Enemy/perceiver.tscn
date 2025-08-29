@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://bj4jhuckdfhaa"]
+
+[ext_resource type="Texture2D" uid="uid://ce5h4625pqmaq" path="res://Art/sprites/perceiver-Sheet.png" id="1_wg218"]
+[ext_resource type="Script" uid="uid://cxwavbx54f7vf" path="res://Objects/Enemy/scripts/perceiver.gd" id="1_y52ul"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y52ul"]
+atlas = ExtResource("1_wg218")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubdpm"]
+atlas = ExtResource("1_wg218")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_le77c"]
+atlas = ExtResource("1_wg218")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ubdpm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y52ul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ubdpm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_le77c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ubdpm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_le77c"]
+radius = 14.0
+
+[node name="Perceiver" type="AnimatableBody2D"]
+script = ExtResource("1_y52ul")
+
+[node name="AnimatedSprite2d" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ubdpm")
+frame_progress = 0.848887
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_le77c")
