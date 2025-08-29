@@ -19,5 +19,5 @@ func physics_update(_delta: float) -> void:
 	if Input.is_action_just_pressed("jump"):
 		transitioned.emit(self, "jump")
 	
-	if Input.is_action_just_pressed("hide"):
+	if Input.is_action_just_pressed("hide") and parent.is_hidable:
 		transitioned.emit(self, "hide")

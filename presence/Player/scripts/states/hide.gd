@@ -4,6 +4,7 @@ extends State
 
 func enter() -> void:
 	# TODO: add code to "hide presence"
+	parent.velocity.x = 0
 	timer.start()
 	animations.play("hide")
 

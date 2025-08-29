@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var SPEED = 100
 @export var JUMP_VELOCITY = -250
 var presence_lvl: float
+var is_hidable: bool = true
 
 @onready var animations: AnimatedSprite2D = $AnimatedSprite2D
 @onready var state_machine: Node = $StateMachine
