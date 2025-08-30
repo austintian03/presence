@@ -73,6 +73,7 @@ radius = 13.0
 size = Vector2(50, 26)
 
 [node name="Perceiver" type="CharacterBody2D"]
+z_index = 1
 script = ExtResource("1_y52ul")
 
 [node name="AnimatedSprite2d" type="AnimatedSprite2D" parent="."]
@@ -83,17 +84,8 @@ rotation = 1.5708
 shape = SubResource("CircleShape2D_xy4j0")
 
 [node name="FSightArea" type="Area2D" parent="."]
-visible = false
 script = ExtResource("4_qx038")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FSightArea"]
 position = Vector2(-25, 0)
 shape = SubResource("RectangleShape2D_xy4j0")
-
-[node name="FSightArea2" type="Area2D" parent="."]
-script = ExtResource("4_qx038")
-
-[node name="CollisionShape2D2" type="CollisionPolygon2D" parent="FSightArea2"]
-position = Vector2(-10, 0)
-build_mode = 1
-polygon = PackedVector2Array(0, -11, -48, -34, -48, 29, 0, 10)
