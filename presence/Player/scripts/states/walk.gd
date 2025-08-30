@@ -1,6 +1,9 @@
 extends State
 
-func enter():
+func enter(prev_state: String):
+	if parent.velocity.y < 0:
+		parent.velocity.y = 0
+		
 	animations.play("walk")
 	
 func physics_update(delta):

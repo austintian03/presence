@@ -2,7 +2,7 @@ extends State
 
 @onready var timer: Timer = $Timer
 
-func enter() -> void:
+func enter(prev_state: String) -> void:
 	# TODO: add code to "hide presence"
 	parent.velocity.x = 0
 	timer.start()

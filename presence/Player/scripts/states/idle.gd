@@ -1,7 +1,7 @@
 
 extends State
 
-func enter():
+func enter(prev_state: String):
 	animations.play("idle_2")
 
 func update(_delta: float) -> void:

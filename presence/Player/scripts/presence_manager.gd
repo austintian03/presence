@@ -6,18 +6,21 @@ extends Node
 @export var initial_presence: float = 0
 @export var base_rate: float = 1.0
 var p_rate: float
+var is_being_perceived: bool = false
+var presence_lvl: float
 
 @onready var parent: Node = get_owner()
 
 func _ready() -> void:
 	p_rate = base_rate
-	parent.presence_lvl = initial_presence
+	presence_lvl = initial_presence
 
 func _process(delta: float) -> void:
-	parent.presence_lvl = min(parent.presence_lvl + p_rate*delta, max_presence)
+	presence_lvl = min(presence_lvl + p_rate*delta, max_presence)
 	
 func set_p_rate(val: float) -> void:
-	p_rate = val
+	var p_mod = 4 if is_being_perceived else 0
+	p_rate = val + p_mod
 
 func update_presence(state_name: String) -> void:
 	match state_name:

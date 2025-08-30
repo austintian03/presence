@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://76f42n8q36tp" path="res://Player/scripts/player.gd" id="1_4ntmi"]
 [ext_resource type="Texture2D" uid="uid://cojnlu8uk2i33" path="res://Art/sprites/presence-guy-Sheet.png" id="1_l8h54"]
 [ext_resource type="Script" uid="uid://m6xr0qhs1h1" path="res://Player/scripts/presence_manager.gd" id="3_00tjw"]
-[ext_resource type="Script" uid="uid://dydt6xas4kvwa" path="res://Objects/scripts/state_machine.gd" id="3_btcbx"]
 [ext_resource type="Script" uid="uid://b3na5bbfpm50o" path="res://Player/scripts/states/idle.gd" id="4_gwnis"]
 [ext_resource type="FontFile" uid="uid://d31y4fyh1ctg" path="res://Assets/fonts/Dedicool.ttf" id="4_x3vf3"]
 [ext_resource type="Script" uid="uid://dm6wuu6ius2vj" path="res://Player/scripts/states/walk.gd" id="5_k53q1"]
+[ext_resource type="Script" uid="uid://d87kjjiuqggh" path="res://Player/scripts/player_state_machine.gd" id="5_x3vf3"]
 [ext_resource type="Script" uid="uid://cj1doaorhwiqd" path="res://Player/scripts/states/run.gd" id="6_fhl08"]
 [ext_resource type="Script" uid="uid://dc4cwknwtxdse" path="res://Player/scripts/states/jump.gd" id="7_vtle1"]
 [ext_resource type="Script" uid="uid://bua00a0cje5c1" path="res://Player/scripts/states/hide.gd" id="8_od3ui"]
@@ -269,6 +269,7 @@ shape = SubResource("CapsuleShape2D_l8h54")
 
 [node name="PresenceManager" type="Node" parent="."]
 script = ExtResource("3_00tjw")
+base_rate = 0.0
 
 [node name="PresenceLabel" type="Label" parent="."]
 offset_left = -14.0
@@ -284,7 +285,7 @@ vertical_alignment = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("parent", "animations", "initial_state")]
-script = ExtResource("3_btcbx")
+script = ExtResource("5_x3vf3")
 parent = NodePath("..")
 animations = NodePath("../AnimatedSprite2D")
 initial_state = NodePath("Idle")

@@ -1,14 +1,7 @@
-class_name StateMachine
-extends Node
+class_name PlayerStateMachine
+extends StateMachine
 
-signal state_entered
-
-@export var parent: Node2D
-@export var animations: AnimatedSprite2D
-@export var initial_state: State
-
-var current_state: State
-var states: Dictionary = {}
+var jump_buffer: float = 3.0
 
 func _ready():
 	for child in get_children():
@@ -21,15 +14,7 @@ func _ready():
 	if initial_state:
 		initial_state.enter('')
 		current_state = initial_state
-
-func _process(delta: float) -> void:
-	if current_state:
-		current_state.update(delta)
-
-func _physics_process(delta: float) -> void:
-	if current_state:
-		current_state.physics_update(delta)	
-
+		
 func on_child_transition(state: State, new_state_name: String):
 	if state != current_state:
 		return

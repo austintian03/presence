@@ -3,10 +3,10 @@ extends Node
 
 signal transitioned
 
-var parent: CharacterBody2D
+var parent: Node2D
 var animations: AnimatedSprite2D
 
-func enter():
+func enter(_prev_state: String):
 	pass
 	
 func exit():

@@ -1,6 +1,6 @@
 extends State
 
-func enter():
+func enter(prev_state: String):
 	animations.play("run")
 	
 func physics_update(delta):
